@@ -1,0 +1,881 @@
+body {
+  padding: 0%;
+  margin: 0px;
+  width: 100%;
+
+  background-color: rgb(211, 219, 218);
+}
+/*------------------------------------------    try  **********/
+
+.input-medium {
+  width: 300px;
+  height: 25px;
+}
+
+.input-mid {
+  width: 140px;
+  height: 25px;
+}
+
+.input-small {
+  width: 50px;
+  height: 25px;
+}
+
+.button-basic {
+  width: 150px;
+  height: 40px;
+  font-family: "Source Sans Pro", sans-serif;
+  border: 1px solid rgb(185, 185, 185);
+  font-size: 17px;
+  background-color: rgb(211, 219, 218);
+  color: rgb(60, 88, 92);
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.group-nav button {
+  margin: 0px 20px;
+}
+
+.button-basic:hover {
+  background-color: rgb(60, 88, 92);
+  color: rgb(255, 255, 255);
+}
+
+.site-short {
+  margin: 0 auto;
+  min-width: 769px;
+  max-width: 1280px;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 2fr 1fr 3fr 0.1fr;
+}
+
+.site {
+  margin: 0 auto;
+  min-width: 800px;
+  max-width: 1280px;
+  height: 100%;
+  display: grid;
+  grid-template-areas: "head" "nav" "subj" "forms" "foot";
+}
+
+/* -------- header   ----*/
+
+.site-short header {
+  grid-row: 1;
+  background-color: rgb(50, 109, 112);
+  color: white;
+}
+
+.site header {
+  grid-row: 1;
+  background-color: rgb(50, 109, 112);
+  color: white;
+}
+
+header {
+  margin: 0px 0px 20px 0;
+  display: grid;
+  height: 170px;
+  grid-template-columns: 1fr 5fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+header img {
+  grid-column: 1;
+  grid-row: 1;
+  grid-row-end: 3;
+  padding: 0px;
+  margin: 10px 20px;
+  width: 110px;
+}
+
+header h1 {
+  grid-column: 2;
+  grid-row: 1;
+  padding: 0px;
+  margin: 10px 20px 0px 0px;
+  text-align: center;
+}
+
+header p {
+  grid-column: 2;
+  grid-row: 2;
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+}
+header h3 {
+  grid-column: 1;
+  grid-column-end: 4;
+  grid-row: 4;
+  padding: 20px;
+  margin: 0px;
+  text-align: center;
+  background-color: rgb(85, 129, 129);
+}
+
+/*****--------------  website navigation  ----------------*****/
+
+.head-nav {
+  grid-area: nav;
+  height: 60px;
+  font-size: 12px;
+  font-size: 0;
+}
+
+.head-nav svg {
+  margin: auto 0px;
+  height: 60px;
+}
+/********************************** svg styles ******************/
+
+/****  comp[lete  ********/
+svg.comp {
+  width: 100px;
+}
+svg.comp line.cur {
+  stroke: #03a871;
+  stroke-width: 6;
+}
+svg.comp line.nxt {
+  stroke: #03a871;
+  stroke-width: 6;
+}
+svg.comp circle {
+  stroke: #03a871;
+  fill: #03a871;
+  stroke-width: 6;
+}
+svg.comp text.num {
+  fill: #ffffff;
+  font-size: 20px;
+}
+svg.comp text.name {
+  fill: #035a3d;
+  font-size: 8px;
+  font-weight: bold;
+}
+svg.comp line.nxt {
+  stroke: #03a871;
+  stroke-width: 6;
+}
+
+/*** acvtive  ***/
+svg.active {
+  width: 160px;
+  height: 60px;
+}
+svg.active line.cur {
+  stroke: #03a871;
+  stroke-width: 6;
+}
+svg.active line.nxt {
+  stroke: #03a871;
+  stroke-width: 6;
+}
+svg.active circle {
+  stroke: #03a871;
+  fill: #03a871;
+  stroke-width: 6;
+}
+svg.active text.num {
+  fill: #ffffff;
+  font-size: 26px;
+  font-weight: bold;
+}
+svg.active text.name {
+  fill: #03a871;
+  font-size: 13px;
+  font-weight: bold;
+}
+svg.active line.nxt {
+  stroke: #9dc3ec;
+  stroke-width: 6;
+}
+
+/*****     uncomplete   *******/
+svg.uncom {
+  width: 100px;
+}
+svg.uncom line.cur {
+  stroke: #9dc3ec;
+  stroke-width: 6;
+}
+svg.uncom line.nxt {
+  stroke: #9dc3ec;
+  stroke-width: 6;
+}
+svg.uncom circle {
+  stroke: #9dc3ec;
+  fill: #9dc3ec;
+  stroke-width: 6;
+}
+svg.uncom text.num {
+  fill: #ffffff;
+  font-size: 20px;
+}
+svg.uncom text.name {
+  fill: #007bff;
+  font-size: 8px;
+  font-weight: bold;
+}
+svg.uncom line.nxt {
+  stroke: #9dc3ec;
+  stroke-width: 6;
+}
+
+/*-------- website topic ---------------*/
+.site-short .sub-header {
+  grid-row: 2;
+}
+
+.site .sub-header {
+  grid-area: subj;
+}
+
+.sub-header {
+  width: 100%;
+  padding: 5px 0px;
+  margin: 40px auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  background-color: #bfcafa;
+  /* Center the DIV horizontally */
+}
+.sub-header span {
+  grid-column: 1;
+  margin: 0px 40px;
+  font-size: 12px;
+}
+
+.sub-header h4 {
+  width: 100%;
+  text-align: center;
+  grid-column: 2;
+  margin: 0px;
+}
+
+.sub-header a {
+  text-align: end;
+  grid-column: 3;
+  margin: 0px 40px;
+}
+
+/*-------- form body  -------------------------*/
+.main {
+  grid-area: forms;
+}
+
+form.index {
+  display: grid;
+  width: 800px;
+  height: 380px;
+  margin-bottom: 20px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.index .register {
+  grid-column: 1;
+  padding: 0px 20px;
+  
+}
+
+.register h4,
+.login h4 {
+  width: 100%;
+  height: 90%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #608aca;
+}
+
+.index .login {
+  grid-column: 2;
+  padding: 0px 20px;
+  background-color: #a8b7cf;
+}
+
+.res-index {
+  margin: 20px auto;
+  text-align: center;
+}
+
+.site form {
+  grid-area: forms;
+}
+
+.site-short form {
+  grid-row: 3;
+}
+
+form {
+  margin: 0px auto;
+  font-size: 17px;
+}
+
+.p-notice {
+  font-size: 14px;
+  color: blue;
+}
+
+.picture-upload-div {
+  display: grid;
+  grid-template-areas:
+    "aa face ca"
+    "ab face facebut"
+    "ac face cc"
+    "ad bd cd"
+    "ae sign ce"
+    "af sign signbut"
+    "ag sign cg";
+  text-align: center;
+}
+
+#face-img {
+  grid-area: face;
+  width: 180px;
+  height: 200px;
+  border: 1px solid black;
+  margin: 0px auto;
+  margin-bottom: 25px;
+}
+
+.face-div {
+  grid-area: facebut;
+}
+
+.custom-file {
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+}
+
+.custom-file input[type="file"] {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  zoom: 1; /* Fix for IE7 */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.custom-file input[type="text"] {
+  width: 80px;
+  height: 100%;
+}
+
+/********************************************************etc **********************************************************/
+
+.upload-photo {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.file-label {
+  padding: 7px 17px;
+  border: 1px solid black;
+  background-color: rgb(226, 226, 226);
+}
+
+.pf {
+  margin: 10px;
+  height: 32px;
+}
+
+.custom-photo {
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+}
+.custom-photo input[type="file"] {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  zoom: 1; /* Fix for IE7 */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+/************************************************************************ sign image   *********/
+
+#sign-img {
+  grid-area: sign;
+  width: 300px;
+  height: 70px;
+  border: 1px solid black;
+  margin: 0px auto;
+}
+
+.sig-div {
+  grid-area: signbut;
+}
+
+/****** footer  ***/
+
+.site-short footer {
+  grid-row: 4;
+}
+
+.site footer {
+  grid-area: foot;
+}
+footer {
+  padding: 0px 40px;
+  color: white;
+  background-color: rgb(60, 88, 92);
+}
+
+/****** table grouping *****/
+.q-org {
+  width: 150px;
+}
+
+.q-year {
+  width: 100px;
+}
+
+.ui-datepicker-calendar {
+  display: none;
+}
+
+.q-special {
+  width: 100px;
+}
+.q-percnt {
+  width: 40px;
+}
+.q-grade {
+  width: 100px;
+}
+.q-file {
+  width: 200px;
+}
+.q-but {
+  width: 80px;
+}
+
+.edu-qual-table-form {
+  width: 800px;
+}
+
+.edu-qual-table-form td {
+  padding: 0px 0px;
+}
+
+.edu-qual-table-form input {
+  height: 25px;
+}
+
+.edu-qual-table-form input:focus {
+  outline: rgb(160, 0, 0);
+  border: rgb(121, 0, 0);
+}
+
+.teach-exp-table-form td,
+.teach-exp-table-form th {
+  padding: 5px 10px;
+  width: 80px;
+}
+.teach-exp-table-form input {
+  height: 25px;
+  width: 100px;
+}
+
+.ind-exp-table-form td,
+.ind-exp-table-form th {
+  padding: 5px 10px;
+  width: 80px;
+}
+
+.ind-exp-table-form input {
+  height: 28px;
+  width: 100px;
+}
+
+.extra-work-div-form input {
+  height: 25px;
+  margin-bottom: 30px;
+}
+
+.ref-table-form td {
+  padding: 5px 10px;
+  width: 80px;
+}
+
+.ref-table-form input {
+  height: 25px;
+  width: 160px;
+}
+
+/************************************************************************   group input style   *************************************************   **/
+
+.group-date input {
+  margin-right: 20px;
+  margin-bottom: 30px;
+}
+
+.group-sex {
+  margin-right: 20px;
+  margin-bottom: 40px;
+}
+
+select {
+  height: 30px;
+  margin-left: 10px;
+}
+
+.group-nav {
+  text-align: center;
+  margin: 40px auto;
+}
+
+.group-address {
+  padding: 10px 25px;
+}
+
+.pure-material-checkbox {
+  margin: 0px 0px 0px 0px;
+}
+/************************************************  final review *********************************************************************************/
+
+.edu-qual-table,
+.teach-exp-table,
+.ind-exp-table,
+.ref-table,
+.p-addr-table,
+.c-addr-table {
+  border: 1px solid black;
+  border-collapse: collapse;
+  width: 780px;
+}
+
+.edu-qual-table th,
+.teach-exp-table th,
+.ind-exp-table th,
+.ref-table th {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 0px;
+  margin: 0px 2px;
+}
+
+.edu-qual-table td,
+.teach-exp-table td,
+.ind-exp-table td,
+.ref-table td,
+.p-addr-table td,
+.c-addr-table td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  margin: 2px 2px;
+}
+
+.teach-exp-table,
+.ind-exp-table,
+.ref-table,
+.p-addr-table,
+.c-addr-table {
+  width: 780px;
+}
+
+/*** ***********************************              textbox design    ******************************************************************** */
+
+.group {
+  position: relative;
+  margin-bottom: 40px;
+}
+input.material {
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #757575;
+}
+
+input.material-mid {
+  width: 400px;
+}
+
+input.material-small {
+  width: 330px;
+}
+
+input.material-big {
+  width: 500px;
+}
+
+input.material:focus {
+  outline: none;
+}
+
+/* LABEL ======================================= */
+label.material {
+  color: #999;
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+/* active state */
+input.material:focus ~ label.material,
+input.material[required]:valid ~ label.material {
+  top: -20px;
+  font-size: 14px;
+  color: #5264ae;
+}
+
+/* BOTTOM BARS ================================= */
+.bar {
+  position: relative;
+  display: block;
+}
+
+.bar-mid {
+  width: 400px;
+}
+.bar-small {
+  width: 340px;
+}
+.bar-big {
+  width: 500px;
+}
+
+.bar:before,
+.bar:after {
+  content: "";
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #5264ae;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+.bar:before {
+  left: 50%;
+}
+.bar:after {
+  right: 50%;
+}
+
+/* active state */
+input.material:focus ~ .bar:before,
+input.material:focus ~ .bar:after {
+  width: 50%;
+}
+
+/* HIGHLIGHTER ================================== */
+.highlight {
+  position: absolute;
+  height: 60%;
+  width: 100px;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* active state */
+input:focus ~ .highlight {
+  -webkit-animation: inputHighlighter 0.3s ease;
+  -moz-animation: inputHighlighter 0.3s ease;
+  animation: inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@-moz-keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+
+/******        MAterial Check BOx   :  *******************/
+
+.pure-material-checkbox {
+  z-index: 0;
+  position: relative;
+  display: inline-block;
+  color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.87);
+  font-family: var(
+    --pure-material-font,
+    "Roboto",
+    "Segoe UI",
+    BlinkMacSystemFont,
+    system-ui,
+    -apple-system
+  );
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Input */
+.pure-material-checkbox > input {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  z-index: -1;
+  position: absolute;
+  left: -10px;
+  top: -8px;
+  display: block;
+  margin: 0;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.6);
+  box-shadow: none;
+  outline: none;
+  opacity: 0;
+  transform: scale(1);
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.2s;
+}
+
+/* Span */
+.pure-material-checkbox > span {
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
+}
+
+/* Box */
+.pure-material-checkbox > span::before {
+  content: "";
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 3px 11px 3px 1px;
+  border: solid 2px; /* Safari */
+  border-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.6);
+  border-radius: 2px;
+  width: 18px;
+  height: 18px;
+  vertical-align: top;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+/* Checkmark */
+.pure-material-checkbox > span::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: 1px;
+  width: 10px;
+  height: 5px;
+  border: solid 2px transparent;
+  border-right: none;
+  border-top: none;
+  transform: translate(3px, 4px) rotate(-45deg);
+}
+
+/* Checked, Indeterminate */
+.pure-material-checkbox > input:checked,
+.pure-material-checkbox > input:indeterminate {
+  background-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+}
+
+.pure-material-checkbox > input:checked + span::before,
+.pure-material-checkbox > input:indeterminate + span::before {
+  border-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+  background-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+}
+
+.pure-material-checkbox > input:checked + span::after,
+.pure-material-checkbox > input:indeterminate + span::after {
+  border-color: rgb(var(--pure-material-onprimary-rgb, 255, 255, 255));
+}
+
+.pure-material-checkbox > input:indeterminate + span::after {
+  border-left: none;
+  transform: translate(4px, 3px);
+}
+
+/* Hover, Focus */
+.pure-material-checkbox:hover > input {
+  opacity: 0.04;
+}
+
+.pure-material-checkbox > input:focus {
+  opacity: 0.12;
+}
+
+.pure-material-checkbox:hover > input:focus {
+  opacity: 0.16;
+}
+
+/* Active */
+.pure-material-checkbox > input:active {
+  opacity: 1;
+  transform: scale(0);
+  transition: transform 0s, opacity 0s;
+}
+
+.pure-material-checkbox > input:active + span::before {
+  border-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+}
+
+.pure-material-checkbox > input:checked:active + span::before {
+  border-color: transparent;
+  background-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.6);
+}
+
+/* Disabled */
+.pure-material-checkbox > input:disabled {
+  opacity: 0;
+}
+
+.pure-material-checkbox > input:disabled + span {
+  color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.38);
+  cursor: initial;
+}
+
+.pure-material-checkbox > input:disabled + span::before {
+  border-color: currentColor;
+}
+
+.pure-material-checkbox > input:checked:disabled + span::before,
+.pure-material-checkbox > input:indeterminate:disabled + span::before {
+  border-color: transparent;
+  background-color: currentColor;
+}

@@ -1,0 +1,285 @@
+@media print {
+    .contact,
+    .extra1,.end-doc {
+      page-break-after: always;
+    }
+    .sub-file{
+      page-break-before: always;
+    }
+  
+    .print{
+      visibility: hidden;
+    }
+    .site {
+      visibility: visible;
+    }
+  }
+  
+  body {
+    width: 100%;
+    margin: 0px;
+  }
+  
+  #site {
+    margin: 0px auto;
+    width: 1080px;
+    padding: 40px 60px;
+    font-family: "Calibri";
+    font-size: 20px;
+    
+  }
+  
+  /*************************************************header *************************************/
+  header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 0.4fr 1fr 1fr 1fr;
+
+    margin: 0px 0px 5px 0px;
+  }
+  #logo {
+    grid-row: 1;
+    grid-column: 1;
+  }
+  
+  .topic {
+    grid-row: 1;
+    grid-column: 2;
+    display: grid;
+    text-align: center;
+  }
+  
+  header h1 {
+    padding: 0px;
+    margin: 0px;
+    font-size: 20pt;
+  }
+  #act-id {
+    margin: 0px;
+    font-size: 15pt;
+  }
+  
+  #face-img {
+    grid-row: 2;
+    grid-row-end: 5;
+    grid-column: 3;
+    margin: 0px;
+    width: 200px;
+    height: 220px;
+    border: 1px solid;
+    margin-top: 16px;
+    margin-left: 150px;
+  }
+  
+  header h3 {
+    text-align: center;
+    width: 100%;
+    margin: 0px;
+    grid-row: 2;
+    grid-column: 2;
+    font-size: 15pt;
+  }
+  
+  #to-id {
+    margin: 0px;
+    grid-row: 4;
+    grid-column: 1;
+  }
+  
+  /****************************************************** refer tablr ********************************/
+  table.refr {
+    width: 100%;
+    border-collapse: collapse;
+
+    margin: 25px 0px 25px 0px;
+  }
+  
+  table.refr p {
+    margin: 0px;
+    padding: 6px 10px;
+  }
+  
+  table.refr,
+  table.refr td,
+  table.refr tr,
+  table.addr,
+  table.addr td,
+  table.addr tr {
+    border-collapse: collapse;
+    border: 1px solid black;
+  }
+  
+  /************************************ physical info **********************************/
+  
+  table.pers {
+
+    width: 100%;
+    margin: 25px 0px;
+  }
+  
+  table.pers td {
+    text-align: center;
+    padding: 0px;
+  }
+  
+  #dob {
+    border: 1px solid;
+    width: 100%;
+    height: 35px;
+  }
+  
+  #age {
+    border: 1px solid;
+    width: 100%;
+    height: 35px;
+  }
+  
+  #sex {
+    border: 1px solid;
+    width: 100%;
+    height: 35px;
+  }
+  
+  #mstat {
+    border: 1px solid;
+    width: 100%;
+    height: 35px;
+  }
+  
+  /*************************** family memeber   ************************************/
+  .f-mem {
+
+    margin: 25px 0px;
+  }
+  
+  .f-mem label {
+    margin-bottom: 25px;
+  }
+  
+  /************************************  address   **********************************/
+  .addr {
+    width: 100%;
+
+  }
+  
+  table.addr td {
+    padding: 5px 10px;
+  }
+  
+  /*********************************** contact   ******************************************/
+  
+  .contact {
+
+    margin: 50px 0px;
+    margin-bottom: 100px;
+  }
+  
+  /*******************************  qualification         ************************/
+  
+  .edu {
+
+    width: 100%;
+    margin-bottom: 25px;
+  }
+  
+  table.edu,
+  table.edu td,
+  table.edu tr,
+  table.edu th {
+    border-collapse: collapse;
+    border: 1px solid black;
+  }
+  
+  table.edu p {
+    margin: 0px;
+    padding: 6px 10px;
+  }
+  
+  /************************************ experience     *******************************/
+  
+  .exp {
+
+    width: 100%;
+  }
+  
+  table.exp,
+  table.exp td,
+  table.exp tr,
+  table.exp th {
+    border-collapse: collapse;
+    border: 1px solid black;
+  }
+  
+  table.exp td {
+    height: 40px;
+  }
+  
+  /******************************** working ****************************************************/
+  .extra,.extra1 {
+    margin: 25px 0px;
+
+  }
+  
+  .extra p,.extra1 p{
+    
+    height: 120px;
+    text-decoration: underline;
+    word-wrap: break-word;
+    border: 1px solid;
+  }
+  
+  
+  /********************************** refference **************************************************/
+  
+  .reffr{
+
+    width: 100%;
+    margin-bottom: 50px;
+  }
+  
+  table.reffr,
+  table.reffr td,
+  table.reffr tr,
+  table.reffr th {
+    border-collapse: collapse;
+    border: 1px solid black;
+  }
+  
+  table.reffr td {
+    height: 40px;
+  }
+  
+  
+  /******************************* declaration *************************************************/
+  
+  .signa{
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+  }
+  
+  .signa label{
+    grid-column: 1;
+    margin: 40px 0px;
+  }
+  
+  .signa img{
+    grid-column: 2;
+    border: 1px solid;
+    width: 300px;
+    height: 100px;
+  }
+  
+  /***************************************** print *************************************************/
+  .print{
+    width: 1080px;
+    margin: 0px auto;
+  }
+  .print button{
+    width: 300px;
+    font-size: 20px;
+    margin: 10px 0px;
+  }
+
+
+
+  /************************************** all documebt submited **************************************************/
