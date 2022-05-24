@@ -59,7 +59,7 @@ function getProgress($email, $db)
 <html lang="en">
 
 <head>
-  <title>SAU JOB APPLICATION</title>
+  <title> JOB APPLICATION</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="../css/style1.css" rel="stylesheet" />
@@ -73,9 +73,9 @@ function getProgress($email, $db)
     <header>
       <img src="../img/logo.png" />
       <h1>
-        Spicer Adventist University
+        Organization Name
       </h1>
-      <p>(Vide Maharashtra Act No. XIV of 2014)<br />Pune 411067</p>
+      <p>( Maharastra 2021 ))<br />Pune 411067</p>
       <h3>JOB APPLICATION FORM</h3>
     </header>
 

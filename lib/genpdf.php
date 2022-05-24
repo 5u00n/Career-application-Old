@@ -78,10 +78,10 @@ ob_start();
               left: 30;
               top: 36px; ">
                     <h1 style="margin: 0px; font-size: 13pt;">
-                        Spicer Adventist University
+                        Organization Name
                     </h1>
                     <p id="act-id" style="margin: 0px; font-size: 11pt;">
-                        (Vide Maharashtra Act No. XIV of 2014)<br />Pune 411067
+                        ( Maharastra 2021 ))<br />Pune 411067
                     </p>
                     <h3 style="font-size: 10pt; margin-top: 25px;">
                         JOB APPLICATION FORM
@@ -97,7 +97,7 @@ ob_start();
                         <br />
                         The Registrar,
                         <br />
-                        Spicer Adventist University
+                        Organization Name
                         <br />
                         Pune – 411067
                     </p>

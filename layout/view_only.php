@@ -439,7 +439,7 @@ function getProgress($email, $db)
 <html lang="en">
 
 <head>
-  <title>SAU JOB APPLICATION PRINT</title>
+  <title> JOB APPLICATION PRINT</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="../css/print.css?version=1" rel="stylesheet" />
@@ -466,10 +466,10 @@ function getProgress($email, $db)
       <img id="logo" src="../img/logo.png" width="105px" />
       <div class="topic">
         <h1>
-          Spicer Adventist University
+          Organization Name
         </h1>
         <p id="act-id">
-          (Vide Maharashtra Act No. XIV of 2014)<br />Pune 411067
+          ( Maharastra 2021 ))<br />Pune 411067
         </p>
       </div>
       <img id="face-img" src="<?php echo $img_loc; ?>" width="30px" />
@@ -479,7 +479,7 @@ function getProgress($email, $db)
         <br />
         The Registrar,
         <br />
-        Spicer Adventist University
+        Organization Name
         <br />
         Pune – 411067
       </p>

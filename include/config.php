@@ -1,12 +1,12 @@
 <?php
-$dbhost="localhost"; //hostname
-$dbuser="root";  //mysql acc/ username
-$dbpass="";  //mysql scc/ password
-$dbname="career_table"; //mysql database name
+$dbhost = "localhost"; //hostname
+$dbuser = "root";  //mysql acc/ username
+$dbpass = "";  //mysql scc/ password
+$dbname = "career_table"; //mysql database name
 $udir = "../sau_uploads/";
-$adminemail="";
+$adminemail = "";
 if (!file_exists("sau_uploads/")) {
-   mkdir("sau_uploads/");
+  mkdir("sau_uploads/");
 }
 
 $conn = new mysqli($dbhost, $dbuser, $dbpass);
@@ -15,16 +15,15 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 // Create database
-$sql = "CREATE DATABASE $dbname";
-if ($conn->query($sql) === TRUE)
-  {
- // echo "Database created successfully";
+$sql = "CREATE DATABASE IF NOT EXISTS $dbname";
+if ($conn->query($sql) === TRUE) {
+  // echo "Database created successfully";
 } else {
- // echo "Error creating database: " . $conn->error;
+  // echo "Error creating database: " . $conn->error;
 }
 
-mysqli_select_db( $conn,$dbname );
-  $sql = "CREATE TABLE regis_candidate(
+mysqli_select_db($conn, $dbname);
+$sql = "CREATE TABLE IF NOT EXISTS regis_candidate(
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY ,
     email text,
     code INT(8),
@@ -150,13 +149,13 @@ mysqli_select_db( $conn,$dbname );
     reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     UNIQUE KEY(email)
     )";
-    
-    if ($conn->query($sql) === TRUE) {
-     //echo "Table MyGuests created successfully";
-    } else {
-    //echo "Error creating table: " . $conn->error;
-    }
-    
-    $conn->close();
 
+if ($conn->query($sql) === TRUE) {
+  //echo "Table MyGuests created successfully";
+} else {
+  //echo "Error creating table: " . $conn->error;
+}
+
+
+$conn->close();
 ?>
