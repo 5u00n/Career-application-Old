@@ -1,16 +1,25 @@
-<?php include '../include/config.php'; ?>
+<?php 
+if ( ! session_id() ) {
+
+session_start();
+
+}
+ob_start(); ?>
 
 <?php
 $email = "";
-session_start();
+
 if (isset($_SESSION['email']) && $_SESSION['comp'] == "yes") {
   $email = $_SESSION['email'];
 } else {
-  Header("location:../");
+    header("location:../",true);
+    exit;
+  //echo "<script>location='../'</script>";
 }
 ?>
 
 <?php
+include '../include/config.php';
 //database connection
 $db = new mysqli("$dbhost", "$dbuser", "$dbpass");
 $db->select_db("$dbname");
@@ -59,9 +68,10 @@ function getProgress($email, $db)
 <html lang="en">
 
 <head>
-  <title> JOB APPLICATION</title>
+  <title>SAU JOB APPLICATION</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" type="img/x-icon" href="../img/favicon.ico" sizes="16x16" />
   <link href="../css/style1.css" rel="stylesheet" />
   <style>
 
@@ -73,9 +83,9 @@ function getProgress($email, $db)
     <header>
       <img src="../img/logo.png" />
       <h1>
-        Organization Name
+        Spicer Adventist University
       </h1>
-      <p>( Maharastra 2021 ))<br />Pune 411067</p>
+      <p>(Vide Maharashtra Act No. XIV of 2014)<br />Pune 411067</p>
       <h3>JOB APPLICATION FORM</h3>
     </header>
 
@@ -86,9 +96,8 @@ function getProgress($email, $db)
     </div>
     <form method="post" action="logout.php" name="register" class="main-form" >
 
-    <p style="margin: 20px auto;font-size:28px;text-align:center;"><strong>Thank You For completing The Form.</strong></p>
-    <p style="margin: 20px auto;font-size:large;text-align:center;"><strong>Please Check your mail for the document you Application.</strong></p>
-    <p style="margin: 20px auto;font-size:large;text-align:center;"><strong>Keep a copy for your reference.</strong></p>
+    <p style="margin: 20px auto;font-size:28px;text-align:center;"><strong>Thank You For completing The Form!</strong></p>
+    <p style="margin: 20px auto;font-size:large;text-align:center;"><strong>Please Check your mail for your reference copy.</strong></p>
     <div class="group-nav">
         <button class="button-basic" id="submit" name="submit" type="submit" value="Submit">
           <strong>LOGOUT</strong>
@@ -104,3 +113,6 @@ function getProgress($email, $db)
 </body>
 
 </html>
+<?php
+ob_end_flush();
+?>

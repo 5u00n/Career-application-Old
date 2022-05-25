@@ -148,7 +148,7 @@
           2
         </text>
         <text class="name" dominant-baseline="middle" text-anchor="middle">
-          PERSONAL INFO
+          PERSONAL INFOS
         </text>
       </svg>
 
@@ -170,7 +170,7 @@
           3
         </text>
         <text class="name" alignment-baseline="middle" text-anchor="middle">
-          QUALIFICATION
+          QUALIFICATIONS
         </text>
       </svg>
 
@@ -191,7 +191,7 @@
           4
         </text>
         <text class="name" alignment-baseline="middle" text-anchor="middle">
-          WORK DONE
+          WORK & REFF
         </text>
       </svg>
 
@@ -211,7 +211,7 @@
           <text class="num" text-anchor="middle" alignment-baseline="middle">
             5
           </text>
-          <text class="name" alignment-baseline="middle" text-anchor="middle"">
+          <text class="name" alignment-baseline="middle" text-anchor="middle">
             DECLARATION
           </text>
         </svg>
@@ -232,7 +232,7 @@
             <text class="num" text-anchor="middle" alignment-baseline="middle">
               6
             </text>
-            <text class="name" alignment-baseline="middle" text-anchor="middle"">
+            <text class="name" alignment-baseline="middle" text-anchor="middle">
             FINAL CHECK
           </text>
         </svg>

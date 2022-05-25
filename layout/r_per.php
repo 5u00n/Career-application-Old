@@ -1,14 +1,23 @@
-<?php
-include '../include/config.php'; ?>
+<?php 
+if ( ! session_id() ) {
 
-<?php
-
-$email = "";
 session_start();
+
+}
+
+ob_start();
+ ?>
+
+<?php
+include '../include/config.php';
+$email = "";
+
 if (isset($_SESSION['email']) && $_SESSION['comp'] == "no") {
   $email = $_SESSION['email'];
 } else {
-  Header("location:../");
+    header("location:../",true);
+  //echo "<script>location='../'</script>";
+  exit;
 }
 
 ?>
@@ -154,7 +163,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $p_info,
     $db
   ) == 1) {
-    Header("location:r_qual.php");
+      header("location:r_qual.php",true);
+    //echo "<script>location='r_qual.php'</script>";
     exit;
   } else {
     //echo "error";
@@ -249,9 +259,10 @@ function getProgress($email, $db)
 <html lang="en">
 
 <head>
-  <title> JOB APPLICATION</title>
+  <title>SAU JOB APPLICATION</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" type="img/x-icon" href="../img/favicon.ico" sizes="16x16" />
   <link href="../css/style1.css?version=1" rel="stylesheet" />
 
 </head>
@@ -262,9 +273,9 @@ function getProgress($email, $db)
     <header>
       <img src="../img/logo.png" />
       <h1>
-        Organization Name
+        Spicer Adventist University
       </h1>
-      <p>( Maharastra 2021 ))<br />Pune 411067</p>
+      <p>(Vide Maharashtra Act No. XIV of 2014)<br />Pune 411067</p>
       <h3>JOB APPLICATION FORM</h3>
     </header>
 
@@ -275,13 +286,13 @@ function getProgress($email, $db)
 
     <div class="sub-header">
       <span><strong>Hello: </strong><?php echo $_SESSION['email']; ?></span>
-      <h4>PERSONAL INFORMATION</h4>
+      <h4>PERSONAL INFORMATIONS</h4>
       <a href="logout.php">Logout</a>
     </div>
 
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" name="register" class="main-form" style="text-align: center;">
       <div style="width: 420px;margin:0px auto">
-        <p><strong>JOB INFORMATION</strong></p>
+        <p style="text-align:left;"><strong>JOB INFORMATION</strong></p>
         <br>
 
         <div class="group">
@@ -289,7 +300,7 @@ function getProgress($email, $db)
           <span class="highlight"></span>
           <span class="bar bar-mid"></span>
           <label class="material">Ref. of Advertisement</label>
-          <label style="color: red;margin-left:20px;margin-top:3px;font-size:11pt">*Mention from where you got the advertisement for the Job.</label>
+          <label style="color: red;margin-left:20px;margin-top:3px;font-size:11pt">*Enter from where you got the advertisement for the Job.</label>
         </div>
 
         <div class="group">
@@ -297,9 +308,9 @@ function getProgress($email, $db)
           <span class="highlight"></span>
           <span class="bar bar-mid"></span>
           <label class="material">Application for the post of:</label>
-          <label style="color: red;margin-left:20px;margin-top:3px;font-size:11pt">*Enter what post you are applying for.</label>
+          <label style="color: red;margin-left:20px;margin-top:3px;font-size:11pt">*Enter the post being applied for.</label>
         </div>
-        <p><strong>PERSONAL DETAILS</strong></p>
+        <p style="text-align:left;"><strong>PERSONAL DETAILS</strong></p>
         <br>
         <div class="group">
           <input class="material material-mid" type="text" name="name" value="<?php echo $name ?>" required />
@@ -308,7 +319,7 @@ function getProgress($email, $db)
           <label class="material">Name</label>
         </div>
 
-        <div class="group-date">
+        <div class="group-date" style="text-align:left;">
           <label>Date Of Birth</label>
           <br />
           <input class="input-small" name="dob-d" id="dob-d" value="<?php echo $dob_d ?>" onkeyup="getAge();" placeholder="DATE" required />
@@ -318,8 +329,8 @@ function getProgress($email, $db)
             <p style="margin: 0px;display: inline;" name="age" id="age"><?php echo $age ?></p></label>
         </div>
 
-        <div class="group-sex">
-          <label id="sexl" for="sex">MALE/FEMALE :</label>
+        <div class="group-sex" style="text-align:left;">
+          <label id="sexl" for="sex">GENDER :</label>
           <select name="sex" id="sex">
             <option <?php if (strcmp($sex, "") == 0) echo 'selected'; ?> value="">Select</option>
             <option <?php if (strcmp($sex, "Male") == 0) echo 'selected'; ?> value="Male">MALE</option>
@@ -331,16 +342,16 @@ function getProgress($email, $db)
           <input class="material material-mid" type="text" name="fname" value="<?php echo $fname ?>" required />
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label class="material">Father Name</label>
+          <label class="material">Father's Name</label>
         </div>
 
         <div class="group">
           <input class="material material-mid" type="text" name="mname" value="<?php echo $mname ?>" required />
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label class="material">Mother Name</label>
+          <label class="material">Mother's Name</label>
         </div>
-
+        <div style="text-align:left;">
         <label id="catl" for="cat">CATEGORY:</label>
         <select class="cat" name="cat_s" id="cat-selc" onchange="writeCat();">
           <option <?php if (strcmp($cat_s, "") == 0) echo 'selected'; ?> value="">Select</option>
@@ -351,9 +362,10 @@ function getProgress($email, $db)
           <option <?php if (strcmp($cat_s, "Other") == 0) echo 'selected'; ?> value="Other">Other</option>
         </select>
         <input class="input-small" type="text" id="cat" name="cat" placeholder="If Other" />
-
+</div>
         <br>
         <br>
+        <div style="text-align:left;">
         <label class="pure-material-checkbox">
           <input class="checkbox-married" name="c-married" type="checkbox" onchange="valueChanged()" <?php if (strcmp($c_married, "Married") == 0) echo 'checked'; ?> />
           <span>Married.</span>
@@ -363,6 +375,7 @@ function getProgress($email, $db)
           <input class="checkbox-single" name="c-married" type="checkbox" onchange="valueChanged()" <?php if (strcmp($c_married, "Married") == 1) echo 'checked'; ?> />
           <span>Single.</span>
         </label>
+        </div>
         <br />
         <br />
         <br />
@@ -370,10 +383,10 @@ function getProgress($email, $db)
           <input class="material material-mid" type="text" name="sname" id="spouse-input" value="<?php echo $sname ?>" />
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label class="material">Spouse Name</label>
+          <label class="material">Spouse's Name</label>
         </div>
 
-        <p><strong>CONTACT</strong></p>
+        <p style="text-align:left;"><strong>CONTACT</strong></p>
 
         <br>
         <div class="group">
@@ -397,20 +410,20 @@ function getProgress($email, $db)
           <label class="material">Mobile</label>
         </div>
       </div>
-      <p><strong>ADDRESS</strong></p>
+      <p style="text-align:left;margin-left:35px"><strong>ADDRESS</strong></p>
 
       <table>
-        <tr>
-          <th>
-            <label for="">Permanent Address:</label>
+        <tr style="text-align:left;margin-left:28px">
+          <th >
+            <label style="margin-left:28px;" for="">Permanent Address</label>
           </th>
-          <th><label for="">Correspondence Address:</label></th>
+          <th><label style="margin-left:28px;" for="">Correspondence Address</label></th>
         </tr>
-        <tr>
+        <tr style="text-align:left;margin-left:28px">
           <td>
           </td>
-          <td>
-            <label style="margin: 0px 20px;" class="pure-material-checkbox">
+          <td style="text-align:left;margin-left:35px">
+            <label style="margin: 0px 30px;" class="pure-material-checkbox">
               <input id="copy-p-addr" name="copy-p-addr" type="checkbox" onclick="copyPer()" <?php if ($copr_padd == 1) echo 'checked'; ?>>
               <span>Same as Permanent.</span>
             </label>
@@ -586,3 +599,8 @@ include_once('../include/foot.php');
 </body>
 
 </html>
+
+<?php
+
+ob_end_flush();
+?>

@@ -1,19 +1,26 @@
-<?php include '../include/config.php'; ?>
+<?php
+if (!session_id()) {
+
+  session_start();
+}
+ob_start(); ?>
 
 <?php
 
 
 $email = "";
-session_start();
 
 if (isset($_SESSION['email'])) {
   $email = $_SESSION['email'];
 } else {
-  Header("location:register.php");
+  header("location:../", true);
+  exit;
+  //echo "<script>location='register.php'</script>";
 }
 ?>
 
 <?php
+include '../include/config.php';
 //database connection
 $db = new mysqli("$dbhost", "$dbuser", "$dbpass");
 $db->select_db("$dbname");
@@ -35,11 +42,12 @@ $mpdf->Output();*/
 $fullname = $fname = "";
 $img_loc = $sig_loc = $s_place = $sig_name = $img_name = "";
 $s_date = date("d/m/Y");
-$page=6;
+$page = 6;
 $p_info = checkProgress($email, $db);
 //echo $p_info;
+$row = getProgress($email, $db);
+$fullname = $row['fullname'];
 if (((int) $p_info - 6) >= 0) {
-  $row = getProgress($email, $db);
   $img_loc = $row['img_loc'];
   $img_mid = explode("/", $img_loc);
   if (sizeof($img_mid) == 4)
@@ -50,7 +58,7 @@ if (((int) $p_info - 6) >= 0) {
     $sig_name = $sig_mid[3];
   //$s_date = $row['s_date'];
   $s_place = $row['s_place'];
-  $fullname = $row['fullname'];
+
   $fname = explode(" ", $fullname);
   //echo $s_date.":";
 } else {
@@ -63,58 +71,66 @@ if (((int) $p_info - 6) >= 0) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST['back'])) {
-    Header("location:r_work.php");
+    header("location:r_work.php", true);
+    exit;
+    // echo "<script>location='r_work.php'</script>";
   }
   if (isset($_POST['submit'])) {
     // $s_date = $_POST['today'];
+    $uploadOk = 1;
     $s_place = $_POST['filled-place'];
 
 
 
-    if ($fname[0] != null) {
       $target_dir = $udir . $email . "/";
-    }
 
-    if (!file_exists($target_dir)) {
+
+    if (!file_exists($udir . $email)) {
       mkdir($udir . $email);
     }
 
 
-    /// for uploading images
-    if (file_exists($target_dir) && isset($_FILES["photo"]["name"]) && isset($_FILES["sign"]["name"])) {
-      $target_file = $target_dir . basename($_FILES["photo"]["name"]);
-      $target_file2 = $target_dir . basename($_FILES["sign"]["name"]);
-      $uploadOk = 1;
-      // Check if file already exists
-      if (file_exists($target_file)) {
-        // echo "Sorry, file already exists.";
-        //  $uploadOk = 0;
-      }
 
-      // Check file size
-      if ($_FILES["photo"]["size"] > 1000000 && $_FILES["sign"]["size"] < 20000) {
-        // echo "Sorry, your file is too large.";
-        $uploadOk = 0;
-      }
+    //My style
 
-      // Check if $uploadOk is set to 0 by an error
-      if ($uploadOk == 0) {
-        //  echo "Sorry, your file was not uploaded.";
-        // if everything is ok, try to upload file
+    $flag = 0;
+
+    if (file_exists($udir . $email)) {
+      if ($_FILES["photo"]["name"]!="") {
+        $img_loc = $target_dir . basename($_FILES["photo"]["name"]);
+        $flag = move_uploaded_file($_FILES["photo"]["tmp_name"], $img_loc);
+        $img_mid = explode("/", $img_loc);
+        if (sizeof($img_mid) == 4)
+          $img_name = $img_mid[3];
+
       } else {
-        if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file) && move_uploaded_file($_FILES["sign"]["tmp_name"], $target_file2)) {
-          $img_loc = $target_file;
-          $sig_loc = $target_file2;
-        } else {
-        }
       }
+      if ($_FILES["sign"]["name"]!="") {
+        $sig_loc = $target_dir . basename($_FILES["sign"]["name"]);
+        $flag = move_uploaded_file($_FILES["sign"]["tmp_name"], $sig_loc);
+        $sig_mid = explode("/", $sig_loc);
+        if (sizeof($sig_mid) == 4)
+          $sig_name = $sig_mid[3];
+
+      } else {
+      }
+    }
+    else{
+        $flag=2;
     }
 
 
+
     if (put_data($email, $img_loc, $sig_loc, $s_date, $s_place, $p_info, $db) == 1) {
-      Header("location:r_final.php");
-      exit;
+      if ($flag <= 1) {
+        header("location:r_final.php", true);
+        exit;
+      } else {
+        echo " <script> alert('File did not upload properly, Try Again:: CODE:  ".$flag."');</script>";
+     
+      }
     } else {
+      echo " <script> alert('Data did not update properly, Try Again');</script>";
       //echo "error";
     }
   }
@@ -166,26 +182,28 @@ function getProgress($email, $db)
 <html lang="en">
 
 <head>
-  <title> JOB APPLICATION</title>
+  <title>SAU JOB APPLICATION</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" type="img/x-icon" href="../img/favicon.ico" sizes="16x16" />
   <link href="../css/style1.css" rel="stylesheet" />
 
 </head>
+
 <body>
   <div class="site">
     <header>
       <img src="../img/logo.png" />
       <h1>
-        Organization Name
+        Spicer Adventist University
       </h1>
-      <p>( Maharastra 2021 ))<br />Pune 411067</p>
+      <p>(Vide Maharashtra Act No. XIV of 2014)<br />Pune 411067</p>
       <h3>JOB APPLICATION FORM</h3>
     </header>
 
     <?php
-   include_once('../include/nav.php')
-   ?>
+    include_once('../include/nav.php')
+    ?>
 
     <div class="sub-header">
       <span><strong>Hello :</strong><?php echo $_SESSION['email']; ?></span>
@@ -206,7 +224,7 @@ function getProgress($email, $db)
           <p style="color: red;">
             * Please upload your passport size photograph, <br />with file name as ("photo.png" or "photo.jpg")
             <br>
-            *The images should be in between 20kb to 1mb.
+            *The image size should 20kb to 1mb.
           </p>
         </div>
 
@@ -221,10 +239,10 @@ function getProgress($email, $db)
           </div>
 
           <p style="color: red;">
-            * Please sign in a clean sheet and after croping to width 300px and height 100px ,
-            <br />upload the file name as ("sign.png" / "sign.jpg") .
+            * Please sign on a clean sheet(width 300px,height 100px)<br>
+            upload the file named as ('sign.png' / 'sign.jpg') .
             <br>
-            *The images should be in between 20kb to 1mb.
+            *The image size should be 20kb to 1mb.
           </p>
         </div>
       </div>
@@ -238,7 +256,7 @@ function getProgress($email, $db)
               text-decoration-style: solid;
               font-style: italic;
             "><?php echo $fullname; ?></strong>
-        declare that the information provided by me on the above mentioned
+        declare that the informations provided by me on the above mentioned
         form is true and correct <br />to the best of my knowledge and belief.
       </p>
       <br />
@@ -264,8 +282,8 @@ function getProgress($email, $db)
       </div>
     </form>
     <?php
-include_once('../include/foot.php');
-  ?>
+    include_once('../include/foot.php');
+    ?>
 
   </div>
   <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -296,3 +314,7 @@ include_once('../include/foot.php');
 </body>
 
 </html>
+
+<?php
+ob_end_flush();
+?>

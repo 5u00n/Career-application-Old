@@ -1,21 +1,32 @@
-<?php include '../include/config.php'; ?>
+<?php 
+if ( ! session_id() ) {
+
+session_start();
+
+}
+ob_start(); ?>
 
 <?php
 
 
 $email = "";
-session_start();
+
 
 if (isset($_SESSION['email']) && $_SESSION['comp'] == "yes") {
   $email = $_SESSION['email'];
 } else {
-  Header("location:register.php");
+    header("location:register.php",true);
+    exit;
+  //echo "<script>location='register.php'</script>";
 }
 
 
 ?>
 
 <?php
+
+include '../include/config.php';
+
 //database connection
 $db = new mysqli("$dbhost", "$dbuser", "$dbpass");
 $db->select_db("$dbname");
@@ -439,9 +450,10 @@ function getProgress($email, $db)
 <html lang="en">
 
 <head>
-  <title> JOB APPLICATION PRINT</title>
+  <title>SAU JOB APPLICATION PRINT</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" type="img/x-icon" href="../img/favicon.ico" sizes="16x16" />
   <link href="../css/print.css?version=1" rel="stylesheet" />
 </head>
 <style type="text/css" media="print">
@@ -466,10 +478,10 @@ function getProgress($email, $db)
       <img id="logo" src="../img/logo.png" width="105px" />
       <div class="topic">
         <h1>
-          Organization Name
+          Spicer Adventist University
         </h1>
         <p id="act-id">
-          ( Maharastra 2021 ))<br />Pune 411067
+          (Vide Maharashtra Act No. XIV of 2014)<br />Pune 411067
         </p>
       </div>
       <img id="face-img" src="<?php echo $img_loc; ?>" width="30px" />
@@ -479,7 +491,7 @@ function getProgress($email, $db)
         <br />
         The Registrar,
         <br />
-        Organization Name
+        Spicer Adventist University
         <br />
         Pune – 411067
       </p>
@@ -1209,3 +1221,7 @@ function getProgress($email, $db)
 </body>
 
 </html>
+
+<?php
+ob_end_flush();
+?>

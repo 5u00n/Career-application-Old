@@ -1,0 +1,227 @@
+body {
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  font-family: "Roboto", sans-serif;
+}
+
+.site {
+  margin: 0px auto;
+  width: 1366px;
+}
+
+footer a {
+  color: rgb(21, 116, 240);
+  text-decoration: none;
+  margin-right: 40px;
+}
+
+.site {
+  display: grid;
+  grid-template-areas: "hd hd hd hd" "sd dt dt dt" "ft ft ft ft";
+  grid-template-columns: 1fr 4fr;
+}
+
+.site h2 {
+  grid-area: hd;
+  background-color: #3d2466;
+  color: #ffffff;
+  height: 40px;
+  padding-top: 7px;
+  margin: 0px 5px;
+}
+
+.side {
+  grid-area: sd;
+  grid-column: 1;
+  background-color: #3d2466;
+  height: 500px;
+  margin: 10px 5px;
+  width: 236px;
+  padding: 20px;
+  z-index: 3;
+}
+
+#option {
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  width: 278px;
+  overflow: hidden;
+}
+#option li {
+  margin-bottom: 10px;
+  height: 22px;
+  width: 268px;
+}
+
+#option a {
+  color: rgb(133, 101, 207);
+  text-decoration: none;
+  padding: 5px 10px;
+  width: 268px;
+  font-size: 16px;
+  display: block;
+}
+
+#option a:hover {
+  color: rgb(255, 255, 255);
+  background-color: #5d35a7;
+  font-size: 17px;
+}
+
+.details {
+  grid-area: dt;
+  padding: 20px;
+  grid-column: 2;
+  margin: 10px 5px;
+  height: 500px;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  z-index: 0;
+}
+
+#file,#ent{
+  width: 130px;
+  height: 30px;
+  font-weight: bold;
+  margin: 0px;
+  padding: 5px;
+  font-size: 22px;
+  color: rgb(0, 0, 0);
+  background-color:white;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+#file:hover,#ent:hover{
+  color: rgb(255, 255, 255);
+  background-color: rgb(116, 116, 116);
+}
+
+#ent{
+  background-color: rgb(157, 190, 168);
+  color: white;
+}
+
+
+#files{
+  background-color: rgb(127, 130, 221);
+}
+
+.popup {
+  grid-area: dt;
+  padding: 20px;
+  grid-column: 2;
+  width: 300px;
+  margin: 100px auto;
+  box-shadow: 5px 5px 10px 8px rgb(80, 80, 80);
+  height: 200px;
+  background-color: rgb(255, 255, 255);
+  display: grid;
+  grid-template-columns: 260px 40px;
+  grid-template-rows: 30px 270px;
+  position: relative;
+  visibility: hidden;
+}
+
+.popup h4 {
+  grid-row: 1;
+  grid-column: 1;
+  height: 30px;
+  margin: 0px;
+  background-color: #3d2466;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup form {
+  grid-row: 2;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+
+}
+
+.popup input[type=text],.popup input[type=button] ,.popup input[type=submit],.popup input[type=email]{
+  width: 250px;
+  height: 30px;
+  font-size: 17px;
+  margin:5px;
+}
+
+#submit:hover{
+color: white;
+background-color: #006d4c;
+border:1px solid #006d4c ;
+}
+
+.popup button {
+  grid-row: 1;
+  grid-column: 2;
+  width: 40px;
+  height: 30px;
+  font-size: 17px;
+}
+
+.popup button:hover ,.popup button:active{
+  color: white;
+  background-color: rgb(177, 0, 0);
+  border: 1px solid rgb(177, 0, 0);
+}
+footer {
+  grid-area: ft;
+  background-color: #ead8ff;
+  height: 30px;
+}
+
+
+.table{
+  margin-top: 5px;
+  padding: 15px;
+  background-color: rgb(157, 190, 168);
+  width: fit-content;
+}
+table.data-table {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 0px;
+  margin: 0px 2px;
+  
+  
+  
+}
+
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 0px 10px;
+  margin: 0px 5px;
+  text-align: center;
+}
+
+tr {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 0px;
+  margin: 0px;
+}
+
+
+#files{
+  visibility: hidden;
+}
+
+footer {
+  grid-area: ft;
+  background-color: #d8ffff;
+  height: 30px;
+}

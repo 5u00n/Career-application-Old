@@ -1,7 +1,14 @@
-<?php include '../include/config.php'; ?>
+<?php
+
+if ( ! session_id() ) {
+
+session_start();
+
+}
+ob_start();?>
 
 <?php
-session_start();
+include '../include/config.php';
 //database connection
 $db = new mysqli("$dbhost", "$dbuser", "$dbpass");
 $db->select_db("$dbname");
@@ -55,12 +62,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       }
     }
   }
+
+
+
+
+
   if (isset($_POST['submit'])) {
     $code = $_POST['ver-code'];
     //$mailInfo = "Mail error : Try Again...";
     $checkC = check_code($email, $code, $db);
     if ($checkC == 1) {
-      Header("location:r_per.php");
+      
+      
+      header("location:r_per.php",true);
+     // echo "<script>location='r_per.php'</script>";
       exit;
     } else if ($checkC == 2) {
       $mailInfo = "$email is already taken Go To: <a style='border:0.7px solid;padding:4px;' href='/'>Login</a>";
@@ -76,7 +91,6 @@ function check_exist($email, $db)
   $flag = 0;
   if ($result->num_rows > 0) {
     foreach ($result as $row) {
-      //echo $row["email"];
 
       if (!strcmp($email, $row["email"])) {
 
@@ -114,21 +128,23 @@ function in_data($email, $code, $db)
 
 function send_mail($email, $code)
 {
-  $to_email = $email;
-  $subject = "CODE FOR  JOB APPLICATION  " . $code;
-  $body = "Hello,This mail is to complete the  Form. Your Code is:  " . $code;
+ /* $to_email = $email;
+  $subject = "CODE FOR SAU JOB APPLICATION  " . $code;
+  $body = "Hello,This mail is to complete the SAU Form. Your Code is:  " . $code;
    $separator = md5(time());
 
   // carriage return type (RFC)
   $eol = "\r\n";
 
-  $headers = "From:  OFFICE <sau@sau.edu.in>" . $eol;
+  $headers = "From: SAU OFFICE <sau@sau.edu.in>" . $eol;
   $headers .= "MIME-Version: 1.0" . $eol;
   $headers .= "Content-Type: multipart/mixed; boundary=\"" . $separator . "\"" . $eol;
   $headers .= "Content-Transfer-Encoding: 7bit" . $eol;
   $headers .= "This is a MIME encoded message." . $eol;
 
   return mail($to_email, $subject, $body, $headers);
+  */
+  return 1;
 }
 
 function check_code($email, $code, $db)
@@ -175,9 +191,10 @@ function up_data($email, $code, $db)
 <html lang="en">
 
 <head>
-  <title> JOB APPLICATION</title>
+  <title>SAU JOB APPLICATION</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" type="img/x-icon" href="../img/favicon.ico" sizes="16x16" />
   <link href="../css/style1.css?version=1" rel="stylesheet" />
 </head>
 
@@ -188,9 +205,9 @@ function up_data($email, $code, $db)
     <header>
       <img src="../img/logo.png" />
       <h1>
-        Organization Name
+        Spicer Adventist University
       </h1>
-      <p>( Maharastra 2021 ))<br />Pune 411067</p>
+      <p>(Vide Maharashtra Act No. XIV of 2014)<br />Pune 411067</p>
       <h3>JOB APPLICATION FORM</h3>
     </header>
 
@@ -290,4 +307,7 @@ include_once('../include/foot.php');
 </body>
 
 </html>
+<?php
+ob_end_flush();
+?>
 <!-- php quary section -->

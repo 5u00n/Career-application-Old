@@ -1,15 +1,25 @@
-<?php include '../include/config.php'; ?>
+<?php
+if (!session_id()) {
+
+  session_start();
+}
+
+ob_start();
+?>
 
 <?php
 
-
+include '../include/config.php';
 $email = "";
-session_start();
+
 
 if (isset($_SESSION['email']) && $_SESSION['comp'] == "no") {
   $email = $_SESSION['email'];
 } else {
-  Header("location:../");
+
+  header("location:../", true);
+  exit;
+  // echo "<script>location='../'</script>";
 }
 ?>
 
@@ -143,7 +153,9 @@ if (((int) $p_info - 3) >= 0) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST['back'])) {
-    Header("location:r_per.php");
+    //echo "<script>location='r_per.php'</script>";
+    header("location:r_per.php", true);
+    exit;
   }
   if (isset($_POST['submit'])) {
     $ssc_org = $_POST['ssc-org'];
@@ -176,7 +188,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mph_prcnt = $_POST['mphil-percnt'];
     $mph_grade = $_POST['mphil-grade'];
     //$mph_docl = $_POST[''];
-    $phd_or = $_POST['phd-org'];
+    $phd_org = $_POST['phd-org'];
     $phd_my = $_POST['phd-year'];
     $phd_speci = $_POST['phd-special'];
     $phd_prcnt = $_POST['phd-percnt'];
@@ -220,9 +232,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ie3_pst = $_POST['ind-pos3'];
     $ie3_sub = $_POST['ind-skill3'];
     $ie3_napp = $_POST['ind-nature3'];
-    $ie3_yexp = $_POST['ind-ecp-y3'];
+    $ie3_yexp = $_POST['ind-exp-y3'];
 
 
+    $flag = 0;
 
 
     // $exm_docl = $_POST[''];
@@ -230,45 +243,81 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     ///file upload procedure
 
-    if ($fname[0] != null) {
+    
       $target_dir = $udir . $email . "/";
-    }
+    
 
-    if (!file_exists($target_dir)) {
+    if (!file_exists($udir . $email)) {
       mkdir($udir . $email);
     }
-    if (file_exists($target_dir)) {
+    if (file_exists($udir . $email)) {
       if ($_FILES["ssc-file"]["name"] != "") {
+
         $ssc_docl = $target_dir . basename($_FILES["ssc-file"]["name"]);
-        move_uploaded_file($_FILES["ssc-file"]["tmp_name"], $ssc_docl);
+        $flag = move_uploaded_file($_FILES["ssc-file"]["tmp_name"], $ssc_docl);
         //echo $ssc_docl;
+        $ssc_mid = explode("/", $ssc_docl);
+        if (sizeof($ssc_mid) == 4)
+          $ssc_docln = $ssc_mid[3];
+      } else {
       }
       if ($_FILES["hsc-file"]["name"] != "") {
         $hsc_docl = $target_dir . basename($_FILES["hsc-file"]["name"]);
-        move_uploaded_file($_FILES["hsc-file"]["tmp_name"], $hsc_docl);
+        $flag = move_uploaded_file($_FILES["hsc-file"]["tmp_name"], $hsc_docl);
         // echo $hsc_docl;
+        $hsc_mid = explode("/", $hsc_docl);
+        if (sizeof($hsc_mid) == 4)
+          $hsc_docln = $hsc_mid[3];
+      } else {
       }
+
       if ($_FILES["bdeg-file"]["name"] != "") {
         $bd_docl = $target_dir . basename($_FILES["bdeg-file"]["name"]);
-        move_uploaded_file($_FILES["bdeg-file"]["tmp_name"], $bd_docl);
+        $flag = move_uploaded_file($_FILES["bdeg-file"]["tmp_name"], $bd_docl);
+        $bd_mid = explode("/", $bd_docl);
+        if (sizeof($bd_mid) == 4)
+          $bd_docln = $bd_mid[3];
+      } else {
       }
       if ($_FILES["mdeg-file"]["name"] != "") {
         $md_docl = $target_dir . basename($_FILES["mdeg-file"]["name"]);
-        move_uploaded_file($_FILES["mdeg-file"]["tmp_name"], $md_docl);
+        $flag = move_uploaded_file($_FILES["mdeg-file"]["tmp_name"], $md_docl);
+        $md_mid = explode("/", $md_docl);
+        if (sizeof($md_mid) == 4)
+          $md_docln = $md_mid[3];
+      } else {
       }
       if ($_FILES["mphil-file"]["name"] != "") {
         $mph_docl = $target_dir . basename($_FILES["mphil-file"]["name"]);
-        move_uploaded_file($_FILES["mphil-file"]["tmp_name"], $mph_docl);
+        $flag = move_uploaded_file($_FILES["mphil-file"]["tmp_name"], $mph_docl);
+        $mph_mid = explode("/", $mph_docl);
+        if (sizeof($mph_mid) == 4)
+          $mph_docln = $mph_mid[3];
+      } else {
       }
       if ($_FILES["phd-file"]["name"] != "") {
         $phd_docl = $target_dir . basename($_FILES["phd-file"]["name"]);
-        move_uploaded_file($_FILES["phd-file"]["tmp_name"], $phd_docl);
+        $flag = move_uploaded_file($_FILES["phd-file"]["tmp_name"], $phd_docl);
+
+        $phd_mid = explode("/", $phd_docl);
+        if (sizeof($phd_mid) == 4)
+          $phd_docln = $phd_mid[3];
+      } else {
       }
       if ($_FILES["exam-file"]["name"] != "") {
         $exm_docl = $target_dir . basename($_FILES["exam-file"]["name"]);
-        move_uploaded_file($_FILES["exam-file"]["tmp_name"], $exm_docl);
+        $flag = move_uploaded_file($_FILES["exam-file"]["tmp_name"], $exm_docl);
+        echo $_FILES["exam-file"]["size"];
+        $exm_mid = explode("/", $exm_docl);
+        if (sizeof($exm_mid) == 4)
+          $exm_docln = $exm_mid[3];
+      } else {
       }
     }
+    else{
+        $flag=2;
+    }
+    //echo "---------  ".$flag;
 
     if (put_data(
       $email,
@@ -347,10 +396,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $p_info,
       $db
     ) == 1) {
-      Header("location:r_work.php");
-      exit;
+      if ($flag <= 1) {
+           //echo " <script> alert('File upload properly, Try Again:: CODE:  ".$flag."');</script>";
+       header("location:r_work.php", true);
+        exit;
+      } else {
+        echo " <script> alert('File not upload properly, Upload File Again:: CODE:  ".$flag."');</script>";
+      }
     } else {
       //echo "error";
+      echo " <script> alert('File did not upload properly, Try Again');</script>";
     }
   }
 }
@@ -584,9 +639,10 @@ function getProgress($email, $db)
 <html lang="en">
 
 <head>
-  <title> JOB APPLICATION</title>
+  <title>SAU JOB APPLICATION</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" type="img/x-icon" href="../img/favicon.ico" sizes="16x16" />
   <link href="../css/style1.css?version=1" rel="stylesheet" />
 </head>
 
@@ -596,15 +652,15 @@ function getProgress($email, $db)
     <header>
       <img src="../img/logo.png" />
       <h1>
-        Organization Name
+        Spicer Adventist University
       </h1>
-      <p>( Maharastra 2021 ))<br />Pune 411067</p>
+      <p>(Vide Maharashtra Act No. XIV of 2014)<br />Pune 411067</p>
       <h3>JOB APPLICATION FORM</h3>
     </header>
 
     <?php
-   include_once('../include/nav.php');
-   ?>
+    include_once('../include/nav.php');
+    ?>
 
 
     <div class="sub-header">
@@ -616,15 +672,15 @@ function getProgress($email, $db)
 
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" name="register" class="main-form" enctype="multipart/form-data">
 
-      <p style="color: red;margin-left:20px">*Please upload scanned Document in PDF form.
-        Keep name the document same as the file type,
-        <br>eg:- In "Bachler's Degree" row pdf file name should be bdeg.pdf.
+      <p style="color: red;margin-left:20px">*Please upload scanned Documents in PDF form.
+        Name the documents as per the file type,
+        <br>eg:- If "Bachler's Degree" pdf file name should be BachlersDegree.pdf.
         <br>
-        *The PDF should be in between 20kb to 1mb.
+        *The PDF file size should be in between 20kb to 1mb.
       </p>
 
       <div class="qual" style="margin: 0px auto;text-align:center">
-        <p style="margin-bottom:0px"><strong>EDUCATION QUALIFICATION</strong></p>
+        <p style="margin-bottom:0px;"><strong>EDUCATION QUALIFICATIONS</strong></p>
         <hr>
         <table class="edu-qual-table-form">
           <tbody>
@@ -653,7 +709,7 @@ function getProgress($email, $db)
             </tr>
             <tr>
               <td>
-                <p>10th</p>
+                <p>10<sup>th</sup></p>
               </td>
               <td> <input class="q-org" type="text" name="ssc-org" id="ssc-org" value="<?php echo $ssc_org; ?>" /></td>
               <td><input name="ssc-year" id="ssc-year" class="q-year" value="<?php echo $ssc_my; ?>" /></td>
@@ -672,7 +728,7 @@ function getProgress($email, $db)
             </tr>
             <tr>
               <td>
-                <p>12th</p>
+                <p>12<sup>th</sup></p>
               </td>
               <td>
                 <input type="text" class="q-org" name="hsc-org" id="hsc-org" value="<?php echo $hsc_org; ?>" />
@@ -696,7 +752,7 @@ function getProgress($email, $db)
                   <input type="button" value="Choose File" />
                   <input class="file-test" type="text" placeholder="No file Selected" value="<?php echo $hsc_docln; ?>" />
                 </div>
-       
+
 
               </td>
             </tr>
@@ -1016,8 +1072,8 @@ function getProgress($email, $db)
       </div>
     </form>
     <?php
-include_once('../include/foot.php');
-  ?>
+    include_once('../include/foot.php');
+    ?>
 
   </div>
 

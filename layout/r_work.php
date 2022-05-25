@@ -1,19 +1,29 @@
-<?php include '../include/config.php'; ?>
+<?php 
+if ( ! session_id() ) {
+
+session_start();
+
+}
+ob_start();
+ ?>
 
 <?php
 
 
 $email = "";
-session_start();
 
 if (isset($_SESSION['email']) && $_SESSION['comp'] == "no") {
   $email = $_SESSION['email'];
 } else {
-  Header("location:../");
+    header("location:../",true);
+    exit;
+  echo "<script>location='../'</script>";
 }
 ?>
 
 <?php
+
+include '../include/config.php';
 //database connection
 $db = new mysqli("$dbhost", "$dbuser", "$dbpass");
 $db->select_db("$dbname");
@@ -53,14 +63,18 @@ if (((int) $p_info - 4) >= 0) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST['back'])) {
-    Header("location:r_qual.php");
+      header("location:r_qual.php",true);
+      exit;
+    //echo "<script>location='r_qual.php'</script>";
   }
   if (isset($_POST['submit'])) {
-    $rw_sup = $_POST['res-work-sup'];
-    $rpap_pre = $_POST['res-pre'];
-    $rpap_pub = $_POST['res-pub'];
-    $meet_attnd = $_POST['conf-attnd'];
-    $awards = $_POST['award-work'];
+    $rw_sup = addslashes($_POST['res-work-sup']);
+    $rpap_pre = addslashes($_POST['res-pre']);
+    $rpap_pub = addslashes($_POST['res-pub']);
+    $meet_attnd = addslashes($_POST['conf-attnd']);
+    $awards = addslashes($_POST['award-work']);
+    
+    
 
     $rf1_name = $_POST['ref-name1'];
     $rf1_title = $_POST['ref-title1'];
@@ -97,7 +111,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $p_info,
       $db
     ) == 1) {
-      Header("location:r_dec.php");
+     //echo "<script>location='r_dec.php'</script>";
+     header("location:r_dec.php",true);
       exit;
     } else {
       //echo "error";
@@ -188,9 +203,10 @@ function getProgress($email, $db)
 <html lang="en">
 
 <head>
-  <title> JOB APPLICATION</title>
+  <title>SAU JOB APPLICATION</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" type="img/x-icon" href="../img/favicon.ico" sizes="16x16" />
   <link href="../css/style1.css" rel="stylesheet" />
 </head>
 
@@ -200,9 +216,9 @@ function getProgress($email, $db)
     <header>
       <img src="../img/logo.png" />
       <h1>
-        Organization Name
+        Spicer Adventist University
       </h1>
-      <p>( Maharastra 2021 ))<br />Pune 411067</p>
+      <p>(Vide Maharashtra Act No. XIV of 2014)<br />Pune 411067</p>
       <h3>JOB APPLICATION FORM</h3>
     </header>
 
@@ -221,36 +237,37 @@ function getProgress($email, $db)
 
       <p><strong>WORK DONE</strong></p>
       <hr>
+      
       <br>
       <div class="extra-work-div-form" style="margin: 0px auto;">
         <lable id="res-work-sup-l" for="res-work-sup"><strong>RESEARCH WORK SUPERVISED </strong>(If yes, give
-          details)</lable>
+          details, less than 500 words)</lable>
         <br />
-        <textarea id="res-work-sup" name="res-work-sup" cols="90" rows="5"><?php echo $rw_sup; ?></textarea>
+        <textarea id="res-work-sup" name="res-work-sup" cols="90" rows="5" maxlength="500"><?php echo $rw_sup; ?></textarea>
         <br />
         <br>
         <lable id="res-pre-l" for="res-pre"><strong>RESEARCH PAPERS PUBLISHED </strong>(If yes, give
-          details)</lable>
+          details, less than 500 words)</lable>
         <br />
-        <textarea id="res-pub" name="res-pub" cols="90" rows="5"><?php echo $rpap_pub; ?></textarea>
+        <textarea id="res-pub" name="res-pub" cols="90" rows="5" maxlength="500"><?php echo $rpap_pub; ?></textarea>
         <br>
         <br />
         <lable id="res-pre-l" for="res-pre"><strong>RESEARCH PAPERS PRESENTED </strong>(If yes, give
-          details)</lable>
+          details, less than 500 words)</lable>
         <br />
-        <textarea id="res-pre" name="res-pre" cols="90" rows="5"><?php echo $rpap_pre; ?></textarea>
+        <textarea id="res-pre" name="res-pre" cols="90" rows="5" maxlength="500"><?php echo $rpap_pre; ?></textarea>
         <br>
         <br />
         <lable id="conf-attnd-l" for="conf-attnd"><strong>CONFERENCES/ SEMINARS/ WORKSHOPS ATTENDED </strong>(If yes,
-          give details)</lable>
+          give details, less than 500 words)</lable>
         <br />
-        <textarea id="conf-attnd" name="conf-attnd" cols="90" rows="5"><?php echo $meet_attnd; ?></textarea>
+        <textarea id="conf-attnd" name="conf-attnd" cols="90" rows="5" maxlength="500"><?php echo $meet_attnd; ?></textarea>
         <br>
         <br />
-        <lable id="award-work-sup-l" for="award-work-sup"><strong>AWARDS/PATENTS/FELLOWSHIP </strong>(If yes, give
-          details)</lable>
+        <lable id="award-work-sup-l" for="award-work-sup"><strong>AWARDS/ PATENTS/ FELLOWSHIP </strong>(If yes, give
+          details, less than 500 words)</lable>
         <br />
-        <textarea id="award-work" name="award-work" cols="90" rows="5"><?php echo $awards; ?></textarea>
+        <textarea id="award-work" name="award-work" cols="90" rows="5" maxlength="500"><?php echo $awards; ?></textarea>
       </div>
       <br><br><br>
 
@@ -339,3 +356,7 @@ include_once('../include/foot.php');
 </body>
 
 </html>
+
+<?php
+ob_end_flush();
+?>

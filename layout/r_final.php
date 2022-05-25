@@ -1,6 +1,13 @@
-<?php include '../include/config.php'; ?>
+<?php 
+if ( ! session_id() ) {
+
+session_start();
+
+}
+ob_start(); ?>
 
 <?php
+include '../include/config.php';
 //database connection
 $db = new mysqli("$dbhost", "$dbuser", "$dbpass");
 $db->select_db("$dbname");
@@ -14,11 +21,15 @@ session_start();
 if (isset($_SESSION['email']) && $_SESSION['comp'] == "no") {
   $email = $_SESSION['email'];
 } else {
-  Header("location:../");
+    header("location:../",true);
+    exit;
+ // echo "<script>location='../'</script>";
 }
 
 if (isset($_POST['back'])) {
-  Header("location:r_dec.php");
+    header("location:r_dec.php",true);
+    exit;
+  //echo "<script>location='r_dec.php'</script>";
 }
 if (isset($_POST['submit'])) {
   //include '../lib/genpdf.php';
@@ -32,13 +43,15 @@ if (isset($_POST['submit'])) {
       // Do nothing!
       window.location='r_final.php';
     }</script>";
-
-  // Header("location:print_test.php");
+exit;
+  // echo "<script>location='print_test.php'</script>";
 }
 
 if (isset($_POST['correct'])) {
   //include '../lib/genpdf.php';
-  Header("location:r_per.php");
+  header("location:r_per.php",true);
+  exit;
+  //echo "<script>location='r_per.php'</script>";
 }
 
 
@@ -180,6 +193,7 @@ $file_paths =
   $sig_loc =
   $s_date =
   $firname =
+  $rpap_pub=
   $s_place = "";
 $page = 7;
 
@@ -320,6 +334,7 @@ $ie3_sub = $row['ie3_sub'];
 $ie3_napp = $row['ie3_napp'];
 $ie3_yexp = $row['ie3_yexp'];
 $rw_sup = $row['rw_sup'];
+$rpap_pub = $row['rpap_pub'];
 $rpap_pre = $row['rpap_pre'];
 $meet_attnd = $row['meet_attnd'];
 $awards = $row['awards'];
@@ -452,6 +467,7 @@ function getProgress($email, $db)
   ie3_yexp,
   rw_sup,
   rpap_pre,
+  rpap_pub,
   meet_attnd,
   awards,
   rf1_name,
@@ -489,9 +505,10 @@ function getProgress($email, $db)
 <html lang="en">
 
 <head>
-  <title> JOB APPLICATION</title>
+  <title>SAU JOB APPLICATION</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" type="img/x-icon" href="../img/favicon.ico" sizes="16x16" />
   <link href="../css/style1.css?version=1" rel="stylesheet" />
 </head>
 
@@ -501,9 +518,9 @@ function getProgress($email, $db)
     <header>
       <img src="../img/logo.png" />
       <h1>
-        Organization Name
+        Spicer Adventist University
       </h1>
-      <p>( Maharastra 2021 ))<br />Pune 411067</p>
+      <p>(Vide Maharashtra Act No. XIV of 2014)<br />Pune 411067</p>
       <h3>JOB APPLICATION FORM</h3>
     </header>
   <?php
@@ -1019,32 +1036,38 @@ include_once('../include/nav.php');
       <br />
       <br />
       <hr />
-      <div class="extra-work-div-form">
+      <div class="extra-work-div-form" style="word-break: break-all;" >
         <lable id="res-work-sup-l" for="res-work-sup">
           <strong>RESEARCH WORK SUPERVISED </strong>
           (If yes, give details)</lable>
-        <p><?php echo $rw_sup; ?></p>
+        <p style="width: 800px;"><?php echo $rw_sup; ?></p>
+        <br />
+        <br>
+        <lable id="res-work-sup-l" for="res-work-sup">
+          <strong>RESEARCH WORK PUBLISHED </strong>
+          (If yes, give details)</lable>
+        <p style="width: 800px;"><?php echo $rpap_pub; ?></p>
         <br />
         <br>
         <lable id="res-pre-l" for="res-pre">
           <strong>RESEARCH PAPERS PRESENTED </strong>
           (If yes, give details)
         </lable>
-        <p><?php echo $rpap_pre; ?></p>
+        <p style="width: 800px;"><?php echo $rpap_pre; ?></p>
         <br />
         <br>
         <lable id="conf-attnd-l" for="conf-attnd">
           <strong>CONFERENCES/ SEMINARS/ WORKSHOPS ATTENDED </strong>
           (If yes, give details)
         </lable>
-        <p><?php echo $meet_attnd; ?></p>
+        <p style="width: 800px;"><?php echo $meet_attnd; ?></p>
         <br />
         <br>
         <lable id="award-work-sup-l" for="award-work-sup">
           <strong>AWARDS/ PATENTS/ FELLOWSHIP </strong>
           (If yes, give details)
         </lable>
-        <p><?php echo $awards; ?></p>
+        <p style="width: 800px;"><?php echo $awards; ?></p>
       </div>
       <br />
       <hr />
@@ -1180,3 +1203,6 @@ include_once('../include/foot.php');
 </body>
 
 </html>
+<?php
+ob_end_flush();
+?>
