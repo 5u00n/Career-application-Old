@@ -9,7 +9,7 @@ ob_start();
 
 <?php
 $usr="admin";
-$pass="Spicer*#1204";
+$pass="£££££££££££££££££££££";
 $flag=0;
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
