@@ -269,7 +269,7 @@ function genexcel($result)
     }
 
     $writer = new Xlsx($file);
-    $writer->save('../sau_uploads/record.xlsx');
+    $writer->save('../uploads/record.xlsx');
     //echo "real:EXCEL ".(memory_get_peak_usage(true)/1024/1024)." MiB\n\n";
 
     $write = null;

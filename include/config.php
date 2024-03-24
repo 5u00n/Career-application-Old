@@ -3,10 +3,10 @@ $dbhost = "localhost"; //hostname
 $dbuser = "root";  //mysql acc/ username
 $dbpass = "";  //mysql scc/ password
 $dbname = "career_table"; //mysql database name
-$udir = "../sau_uploads/";
+$udir = "../uploads/";
 $adminemail = "";
-if (!file_exists("sau_uploads/")) {
-  mkdir("sau_uploads/");
+if (!file_exists("uploads/")) {
+  mkdir("uploads/");
 }
 
 $conn = new mysqli($dbhost, $dbuser, $dbpass);

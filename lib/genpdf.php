@@ -78,7 +78,7 @@ ob_start();
               left: 30;
               top: 36px; ">
                     <h1 style="margin: 0px; font-size: 13pt;">
-                        Spicer Adventist University
+                        Any Oranization
                     </h1>
                     <p id="act-id" style="margin: 0px; font-size: 11pt;">
                         (Vide Maharashtra Act No. XIV of 2014)<br />Pune 411067
@@ -97,7 +97,7 @@ ob_start();
                         <br />
                         The Registrar,
                         <br />
-                        Spicer Adventist University
+                        Any Oranization
                         <br />
                         Pune – 411067
                     </p>

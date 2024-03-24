@@ -3,7 +3,7 @@
 {
 
     $xlsfilename = 'record.xlsx';
-    $pathxls = '../sau_uploads';
+    $pathxls = '../uploads';
     // $PDFfile = $path . "/" . $PDFfilename;
     $xlsfile = $pathxls . "/" . $xlsfilename;
 
@@ -22,7 +22,7 @@
     $eol = "\r\n";
 
     // main header (multipart mandatory)
-    $headers = "From: SAU OFFICE <contact@sau.edu.in>" . $eol;
+    $headers = "From: OFFICE <contact@some.org>" . $eol;
     $headers .= "MIME-Version: 1.0" . $eol;
     $headers .= "Content-Type: multipart/mixed; boundary=\"" . $separator . "\"" . $eol;
     $headers .= "Content-Transfer-Encoding: 7bit" . $eol;
@@ -50,7 +50,7 @@
  function mailUser_pdf($email, $firname, $adminemail)
 {
     $filename = $firname . 'Application.pdf';
-    $path = '../sau_uploads/' . $email;
+    $path = '../uploads/' . $email;
     $file = $path . "/" . $filename;
 
     $subject = 'Thank you for submiting your application.';
@@ -66,7 +66,7 @@
     $eol = "\r\n";
 
     // main header (multipart mandatory)
-    $headers = "From: SAU OFFICE <contact@sau.edu.in>" . $eol;
+    $headers = "From: OFFICE <contact@some.org>" . $eol;
     $headers .= "MIME-Version: 1.0" . $eol;
     $headers .= "Content-Type: multipart/mixed; boundary=\"" . $separator . "\"" . $eol;
     $headers .= "Content-Transfer-Encoding: 7bit" . $eol;
@@ -100,7 +100,7 @@
  function mailAdmin_AllPDF($adminemail)
 {
 
-    $path = 'sau_uploads/';
+    $path = 'uploads/';
 
 
     ///Scan For all submited files.
@@ -118,7 +118,7 @@
     $eol = "\r\n";
 
     // main header (multipart mandatory)
-    $headers = "From: SAU OFFICE <contact@sau.edu.in>" . $eol;
+    $headers = "From: OFFICE <contact@some.org>" . $eol;
     $headers .= "MIME-Version: 1.0" . $eol;
     $headers .= "Content-Type: multipart/mixed; boundary=\"" . $separator . "\"" . $eol;
     $headers .= "Content-Transfer-Encoding: 7bit" . $eol;

@@ -519,7 +519,7 @@ ob_start();
               left: 30;
               top: 36px; ">
                     <h1 style="margin: 0px; font-size: 13pt;">
-                        Spicer Adventist University
+                        Any Oranization
                     </h1>
                     <p id="act-id" style="margin: 0px; font-size: 11pt;">
                         (Vide Maharashtra Act No. XIV of 2014)<br />Pune 411067
@@ -538,7 +538,7 @@ ob_start();
                         <br />
                         The Registrar,
                         <br />
-                        Spicer Adventist University
+                        Any Oranization
                         <br />
                         Pune – 411067
                     </p>
@@ -1269,7 +1269,7 @@ $dompdf->load_html($html);
 $dompdf->render();
 //$dompdf->stream("form.pdf");
 $output = $dompdf->output();
-file_put_contents('../sau_uploads/' . $email . '/' . $firname . 'Application.pdf', $output);
+file_put_contents('../uploads/' . $email . '/' . $firname . 'Application.pdf', $output);
 //echo "real:generate pdf ".(memory_get_peak_usage(true)/1024/1024)." MiB\n\n";
 $dompdf = $output = NULL;
 gc_collect_cycles();
@@ -1296,7 +1296,7 @@ gc_disable();
 function send_mailUser($email, $firname, $adminemail)
 {
     $filename = $firname . 'Application.pdf';
-    $path = '../sau_uploads/' . $email;
+    $path = '../uploads/' . $email;
     $file = $path . "/".$filename;
     
     $subject = 'Thank you for submiting your application.';
@@ -1312,7 +1312,7 @@ function send_mailUser($email, $firname, $adminemail)
     $eol = "\r\n";
 
     // main header (multipart mandatory)
-    $headers = "From: SAU OFFICE <contact@sau.edu.in>" . $eol;
+    $headers = "From: OFFICE <contact@some.org>" . $eol;
     $headers .= "MIME-Version: 1.0" . $eol;
     $headers .= "Content-Type: multipart/mixed; boundary=\"" . $separator . "\"" . $eol;
     $headers .= "Content-Transfer-Encoding: 7bit" . $eol;
@@ -1346,8 +1346,8 @@ function send_mailAdmin($adminemail, $fullname, $firname, $email, $reg_date, $s_
 
     //$PDFfilename = $firname . 'Application.pdf';
     $xlsfilename = 'record.xlsx';
-    $path = '../sau_uploads/' . $email;
-    $pathxls = '../sau_uploads';
+    $path = '../uploads/' . $email;
+    $pathxls = '../uploads';
     // $PDFfile = $path . "/" . $PDFfilename;
     $xlsfile = $pathxls . "/" . $xlsfilename;
 
@@ -1372,7 +1372,7 @@ function send_mailAdmin($adminemail, $fullname, $firname, $email, $reg_date, $s_
     $eol = "\r\n";
 
     // main header (multipart mandatory)
-    $headers = "From: SAU OFFICE <contact@sau.edu.in>" . $eol;
+    $headers = "From: OFFICE <contact@some.org>" . $eol;
     $headers .= "MIME-Version: 1.0" . $eol;
     $headers .= "Content-Type: multipart/mixed; boundary=\"" . $separator . "\"" . $eol;
     $headers .= "Content-Transfer-Encoding: 7bit" . $eol;

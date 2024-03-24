@@ -112,14 +112,14 @@ function check_exist($email, $db)
 function send_mail($email, $code)
 {
 	$to_email = $email;
-	$subject = "CODE FOR SAU JOB APPLICATION  " . $code;
-	$body = "Hello,This mail is to complete the SAU Form. Your Code is:  " . $code;
+	$subject = "CODE FOR JOB APPLICATION  " . $code;
+	$body = "Hello,This mail is to complete the Form. Your Code is:  " . $code;
 	$separator = md5(time());
 
 	// carriage return type (RFC)
 	$eol = "\r\n";
 
-	$headers = "From: SAU OFFICE <sau@sau.edu.in>" . $eol;
+	$headers = "From: OFFICE <hr@some.org>" . $eol;
 	$headers .= "MIME-Version: 1.0" . $eol;
 	$headers .= "Content-Type: multipart/mixed; boundary=\"" . $separator . "\"" . $eol;
 	$headers .= "Content-Transfer-Encoding: 7bit" . $eol;
@@ -165,7 +165,7 @@ function check_code($email, $code, $db)
 <html lang="en">
 
 <head>
-	<title>SAU JOB APPLICATION</title>
+	<title>JOB APPLICATION</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="shortcut icon" type="img/x-icon" href="img/favicon.ico" />
@@ -180,7 +180,7 @@ function check_code($email, $code, $db)
 		<header>
 			<img src="img/logo.png" />
 			<h1>
-				Spicer Adventist University
+				Any Oranization
 			</h1>
 			<p>(Vide Maharashtra Act No. XIV of 2014)<br />Pune 411067</p>
 			<h3>JOB APPLICATION FORM</h3>

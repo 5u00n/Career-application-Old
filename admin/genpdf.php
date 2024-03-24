@@ -373,7 +373,7 @@ function genPdf($row)
               left: 30;
               top: 36px; ">
                     <h1 style="margin: 0px; font-size: 13pt;">
-                        Spicer Adventist University
+                        Any Oranization
                     </h1>
                     <p id="act-id" style="margin: 0px; font-size: 11pt;">
                         (Vide Maharashtra Act No. XIV of 2014)<br />Pune 411067
@@ -392,7 +392,7 @@ function genPdf($row)
                         <br />
                         The Registrar,
                         <br />
-                        Spicer Adventist University
+                        Any Oranization
                         <br />
                         Pune – 411067
                     </p>
@@ -1120,7 +1120,7 @@ function genPdf($row)
     $dompdf->load_html($html);
     $dompdf->render();
     $output = $dompdf->output();
-    if(file_put_contents('sau_uploads/' . $firname.$id. 'Application.pdf', $output))
+    if(file_put_contents('uploads/' . $firname.$id. 'Application.pdf', $output))
     $chk=1;
     $dompdf = $output = NULL;
     gc_collect_cycles();

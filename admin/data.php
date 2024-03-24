@@ -45,7 +45,7 @@ if($q!=="" && $q< count($data)){
     //foreach($data[$q] as $row){
         $fnum=((int)$q+1);
         $prt=($fnum/count($data))*100;
-        $httpaddr=str_replace("..","https://careers.sau.edu.in",$data[$q]['phd_docl']);
+        $httpaddr=str_replace("..","http://localhost",$data[$q]['phd_docl']);
         echo '<progress id="file" stye="width:1000px;height:30px"value="'.$prt.'" max="100"></progress>';
         echo '<p id="prt" ><b>'.$prt.' %</b></p>';
 

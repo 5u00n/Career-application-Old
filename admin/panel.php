@@ -97,15 +97,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 header('Content-Description: File Transfer');
                 header('Content-Type: application/force-download');
-                header("Content-Disposition: attachment; filename=\"" . basename("../sau_uploads/record.xlsx") . "\";");
+                header("Content-Disposition: attachment; filename=\"" . basename("../uploads/record.xlsx") . "\";");
                 header('Content-Transfer-Encoding: binary');
                 header('Expires: 0');
                 header('Cache-Control: must-revalidate');
                 header('Pragma: public');
-                header('Content-Length: ' . filesize("../sau_uploads/record.xlsx"));
+                header('Content-Length: ' . filesize("../uploads/record.xlsx"));
                 ob_clean();
                 flush();
-                readfile("../sau_uploads/record.xlsx"); //showing the path to the server where the file is to be download
+                readfile("../uploads/record.xlsx"); //showing the path to the server where the file is to be download
                 exit;
             }
         }
@@ -191,7 +191,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo '</ol>';
                 }
 
-                listFolderFiles('../sau_uploads'); ?>
+                listFolderFiles('../uploads'); ?>
 
             </div>
 
